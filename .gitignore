@@ -1,0 +1,32 @@
+# Unity
+/Library/
+/Temp/
+/Logs/
+/Build/
+/Builds/
+/obj/
+*.csproj
+*.sln
+*.user
+*.userprefs
+*.unityproj
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+*.exe
+*.app
+*.dmg
+
+# Models (stored in Google Drive)
+Assets/Models/*
+!Assets/Models/.gitkeep

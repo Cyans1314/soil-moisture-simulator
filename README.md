@@ -1,0 +1,137 @@
+# 土壤含水率烘干法虚拟仿真实验系统
+
+基于 Unity 的虚拟仿真实验系统，模拟土壤含水率烘干法测定实验。
+
+## 演示
+
+[📹 观看演示视频](docs/demo.mp4)
+
+## 功能
+
+- 完整的实验流程（26 个步骤）
+- 自由选择铝盒和土样类型
+- 实时数据记录和含水率计算
+- 分步骤引导系统
+
+## 快速开始
+
+### 系统要求
+
+- Unity 2022.3 LTS 或更高版本
+- Universal Render Pipeline (URP)
+- **Git LFS** - 必须安装（https://git-lfs.github.com/）
+
+### 获取项目
+
+1. **安装 Git LFS**（必须）
+   - 访问 https://git-lfs.github.com/ 下载并安装
+
+2. **Clone 项目**
+   ```bash
+   git clone https://github.com/yourusername/soil-moisture-simulator.git
+   ```
+
+3. **恢复大模型文件**
+   ```bash
+   cd soil-moisture-simulator
+   git lfs pull
+   ```
+   这会下载所有 .fbx 模型文件
+
+4. **下载超大模型文件**
+
+   项目中有两个超大模型文件超过了 GitHub LFS 限制，需要从 Google Drive 单独下载：
+
+   **下载链接：** https://drive.google.com/drive/folders/1qHelPk7xxTngsoIFHlYh8n5DKOaL49p_?usp=drive_link
+
+   **文件列表：**
+   - 坦噶缸.fbx (82 MB)
+   - 坦.fbx (102 MB)
+
+   **下载步骤：**
+   1. 打开上面的 Google Drive 链接
+   2. 下载这两个文件
+   3. 将它们放到项目的 `Assets/Models/` 文件夹中
+   4. 在 Unity 中刷新资源（Ctrl+R）
+
+5. **打开项目**
+   - 在 Unity Hub 中打开项目文件夹
+   - 等待资源导入完成
+
+### 控制方式
+
+- **WASD** - 移动相机
+- **空格 + 鼠标拖动** - 旋转视角
+- **鼠标滚轮** - 缩放
+- **鼠标左键** - 与物体交互
+
+## 实验步骤
+
+### 第一阶段：空盒称重
+- 将铝盒放到天平上
+- 记录空盒重量 (m₀)
+- 放回托盘
+
+### 第二阶段：取土称重
+- 打开盒盖
+- 用勺子取土样（选择干土或湿土）
+- 关闭盖子
+- 放到天平上记录重量 (m₁)
+- 放回托盘
+
+### 第三阶段：烘干
+- 打开盖子
+- 放入烘箱
+- 点击"烘烤"按钮跳过烘干等待
+- 从烘箱取出（门自动关闭）
+
+### 第四阶段：冷却
+- 放入干燥器
+- 点击"冷却"按钮跳过冷却等待
+- 从干燥器取出（自动）
+
+### 第五阶段：干重称重
+- 关闭盖子
+- 放到天平上
+- 记录干重 (m₂)
+- 系统自动计算含水率：w = (m₁ - m₂) / (m₂ - m₀) × 100%
+
+### 第六阶段：清理
+- 点击"清理"按钮
+- 系统自动倒掉土样并放回铝盒
+
+## 核心系统
+
+| 模块 | 功能 |
+|------|------|
+| GameManager | 游戏状态管理 |
+| StepManager | 实验流程控制 |
+| DataManager | 数据记录和计算 |
+| InteractionController | 交互和动画 |
+| UIManager | 界面管理 |
+
+## 技术细节
+
+**铝盒定位** - 使用 Center 子物体计算偏移，确保精确定位
+
+**干燥器穿墙处理** - 通过 EntryPosition 避免物体穿过容器壁
+
+**盖子层级管理** - 放入容器前移出层级，防止跟随移动
+
+## 开发注意
+
+- 可交互物体需要 Layer: Interactable + Mesh Collider
+- 门/盖子名称需包含 "door"/"cap"
+- 所有动画使用 Smoothstep 缓动
+- 错误信息仅在 Console 显示
+
+## 故障排除
+
+**问题：Clone 后模型文件显示为紫色方块**
+- 解决：确保已安装 Git LFS，运行 `git lfs pull`
+
+**问题：Git LFS 文件下载失败**
+- 解决：检查网络连接，重新运行 `git lfs pull`
+
+**问题：Unity 打开项目时报错**
+- 解决：确保 URP 已安装，检查 ProjectSettings 中的渲染管线设置
