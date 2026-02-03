@@ -4,7 +4,7 @@
 
 ## 演示
 
-[📹 观看演示视频](docs/demo.mp4)
+[📹 观看演示视频](docs/demo.mp4) 需要下载
 
 ## 功能
 
@@ -19,42 +19,24 @@
 
 - Unity 2022.3 LTS 或更高版本
 - Universal Render Pipeline (URP)
-- **Git LFS** - 必须安装（https://git-lfs.github.com/）
 
 ### 获取项目
 
-1. **安装 Git LFS**（必须）
-   - 访问 https://git-lfs.github.com/ 下载并安装
+1. **Clone 项目**
 
-2. **Clone 项目**
-   ```bash
-   git clone https://github.com/yourusername/soil-moisture-simulator.git
-   ```
+2. **下载模型文件**
 
-3. **恢复大模型文件**
-   ```bash
-   cd soil-moisture-simulator
-   git lfs pull
-   ```
-   这会下载所有 .fbx 模型文件
-
-4. **下载超大模型文件**
-
-   项目中有两个超大模型文件超过了 GitHub LFS 限制，需要从 Google Drive 单独下载：
-
+   项目的模型文件存放在 Google Drive：
+   
    **下载链接：** https://drive.google.com/drive/folders/1qHelPk7xxTngsoIFHlYh8n5DKOaL49p_?usp=drive_link
-
-   **文件列表：**
-   - 坦噶缸.fbx (82 MB)
-   - 坦.fbx (102 MB)
 
    **下载步骤：**
    1. 打开上面的 Google Drive 链接
-   2. 下载这两个文件
+   2. 下载所有文件
    3. 将它们放到项目的 `Assets/Models/` 文件夹中
-   4. 在 Unity 中刷新资源（Ctrl+R）
+   4. 在 Unity 中打开项目，资源会自动导入
 
-5. **打开项目**
+3. **打开项目**
    - 在 Unity Hub 中打开项目文件夹
    - 等待资源导入完成
 
@@ -118,20 +100,3 @@
 
 **盖子层级管理** - 放入容器前移出层级，防止跟随移动
 
-## 开发注意
-
-- 可交互物体需要 Layer: Interactable + Mesh Collider
-- 门/盖子名称需包含 "door"/"cap"
-- 所有动画使用 Smoothstep 缓动
-- 错误信息仅在 Console 显示
-
-## 故障排除
-
-**问题：Clone 后模型文件显示为紫色方块**
-- 解决：确保已安装 Git LFS，运行 `git lfs pull`
-
-**问题：Git LFS 文件下载失败**
-- 解决：检查网络连接，重新运行 `git lfs pull`
-
-**问题：Unity 打开项目时报错**
-- 解决：确保 URP 已安装，检查 ProjectSettings 中的渲染管线设置
